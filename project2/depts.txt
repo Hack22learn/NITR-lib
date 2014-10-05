@@ -1,0 +1,19 @@
+PH-Physics
+BM-Biotechnology and Medical Engineering
+MA-Mathematics
+CY-Chemistry
+EE-Electrical Engineering
+ME-Mechanical Engineering
+CR-Ceramic Engineering
+MM-Metallurgical and Materials Engineering
+FP-Food Process Engineering
+LS-Life Science
+CE-Civil Engineering
+ER-Environment
+CH-Chemical Engineering
+MN-Mining Engineering
+CS-Computer Science and Engineering
+HS-Humanities and Social Sciences
+EC-Electronics and Communication Engineering
+ID-Industrial Design
+NITR-others
