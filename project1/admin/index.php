@@ -1,4 +1,12 @@
 <!doctype html>
+<?php
+session_start();
+  if(!isset($_SESSION['user']))
+  {
+   header("location:../login.php");
+   echo "error";
+  }
+?>
 <html lang="en">
 <head>
       <meta charset="utf-8">
@@ -6,6 +14,7 @@
 	  <script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/ajax.js"></script>
 		<script type="text/javascript" src="js/ajax2.js"></script>
+		<script type="text/javascript" src="js/ajax4.js"></script>
 		 <link rel="stylesheet" type="text/css" href="css/main.css" />
 		 <link rel="icon"  type="image/png"   href="favicon.png" />
 
@@ -37,7 +46,9 @@
 				<!-- top navigation  -->
 				<!-- add class navleft to first item and navright to last item as shown -->
 				<li class="navleft"><a href="index.php">BROWSE</a></li>
-				<li class="navright"><a href="search.php">SEARCH</a></li>
+				<li ><a href="search.php">SEARCH</a></li>
+				<li ><a href="upload.php">UPLOAD</a></li>
+				<li class="navright"><a href="logout.php">LOG OUT</a></li>
 			</ul>
 		</div>
 	</div>
@@ -61,7 +72,7 @@
 				
 				</form>
 				<?php
-				session_start();
+			
 				require 'dbconnect.php';
 				echo '<div id="titleatoz" style="display:none;">';
 				for($i=ord('A');$i<=ord('Z');$i++)
@@ -123,7 +134,7 @@ if($bselect!="Title")
 for($j=0 ; $j<count($result) ; $j++)
 		echo '
 					<div id="Result">
-						
+						<div id="r'.$result[$j]['id'].'">
 						<p><a href="'.$result[$j]['url'].'" target="_blank">'.$result[$j]['title'].'</a></p>
 					 
 						 <p> '.$result[$j]['publisher'].'</p>
@@ -132,6 +143,8 @@ for($j=0 ; $j<count($result) ; $j++)
 						  <input name="id" id="id" type="hidden" value="'.$result[$j]['id'].'" / >
 						  <input type="submit" class="Edit" value="Edit" />
 						   </form>
+						     <input id="del" type="button" onclick="con('.$result[$j]['id'].')"  class="Delete" value="Delete" />
+					</div>
 					</div>
 					';	
 					}}

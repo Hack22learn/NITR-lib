@@ -9,6 +9,11 @@
 		
 <?php
 session_start();
+ if(!isset($_SESSION['user']))
+  {
+   header("location:../login.php");
+   echo "error";
+  }
 require 'dbconnect.php';
 if(isset($_POST['id']))
 {
@@ -19,7 +24,7 @@ $q = $pdo->prepare('select title,url,publisher,subject,doctype from libcat where
 	
 }
 else
-header("location:admin.php");
+header("location:index.php");
 if(isset($_POST['id']) && isset($_POST['upub']) && isset($_POST['uti']) && isset($_POST['udoc']) && isset($_POST['usub']) && isset($_POST['url']))
 {
 $uid = (int)$_POST['id'];
@@ -79,7 +84,9 @@ echo '
 				<!-- top navigation  -->
 				<!-- add class navleft to first item and navright to last item as shown -->
 				<li class="navleft"><a href="index.php">BROWSE</a></li>
-				<li class="navright"><a href="search.php">SEARCH</a></li>
+				<li ><a href="search.php">SEARCH</a></li>
+				<li ><a href="upload.php">UPLOAD</a></li>
+				<li class="navright"><a href="logout.php">LOG OUT</a></li>
 			</ul>
 		</div>
 	</div>

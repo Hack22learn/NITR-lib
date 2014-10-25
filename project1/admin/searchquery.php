@@ -1,5 +1,10 @@
 <?php
 session_start();
+ if(!isset($_SESSION['user']))
+  {
+   header("location:../login.php");
+   echo "error";
+  }
 require 'dbconnect.php';
 if(isset($_POST['pgno']))
 {	
@@ -46,7 +51,7 @@ if(isset($_POST['pgno']))
 		for($j=0; $j<count($result) ; $j++)
 		echo '
 					<div id="Result">
-						
+						<div id="r'.$result[$j]['id'].'">
 						<p><a href="'.$result[$j]['url'].'" target="_blank">'.$result[$j]['title'].'</a></p>
 					 
 						 <p> '.$result[$j]['publisher'].'</p>
@@ -55,6 +60,8 @@ if(isset($_POST['pgno']))
 						  <input name="id" id="id" type="hidden" value="'.$result[$j]['id'].'" / >
 						  <input type="submit" class="Edit" value="Edit" />
 						   </form>
+						    <input id="del" type="button" onclick="con('.$result[$j]['id'].')"  class="Delete" value="Delete" />
+					</div>
 					</div>
 					';
 	}

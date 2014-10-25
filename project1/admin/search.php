@@ -1,3 +1,8 @@
+<?php
+session_start();
+  if(!isset($_SESSION['user']))
+  header("location:../login.php");
+  ?>
  <html>
  <head>
  <title>search</title>
@@ -5,6 +10,7 @@
  <link rel="icon"  type="image/png"   href="favicon.png" />
  <script type="text/javascript" src="js/jquery.js"></script>
  <script type="text/javascript" src="js/ajax3.js"></script>
+ <script type="text/javascript" src="js/ajax4.js"></script>
  </head>
  <body>
  <div id="error" style="display:none; border-radius:7px; width:700px; background: -webkit-linear-gradient(rgba(255,0,0,0.6),rgba(232,44,12,0.6)); padding:10px; text-align:center; font-size:20px; color:#fff; margin-left:auto; margin-right:auto;">
@@ -33,7 +39,9 @@
 				<!-- top navigation  -->
 				<!-- add class navleft to first item and navright to last item as shown -->
 				<li class="navleft"><a href="index.php">BROWSE</a></li>
-				<li class="navright"><a href="search.php">SEARCH</a></li>
+				<li ><a href="search.php">SEARCH</a></li>
+				<li ><a href="upload.php">UPLOAD</a></li>
+				<li class="navright"><a href="logout.php">LOG OUT</a></li>
 			</ul>
 		</div>
 	</div>
@@ -59,7 +67,6 @@
 			
  <?php 
   require 'dbconnect.php';
- session_start();
   if(isset($_POST['sword']) && isset($_POST['stype']))
  {
 	$sword = $_POST['sword'] ;
@@ -130,7 +137,7 @@
 		for($j=0 ; $j<count($result) ; $j++)
 		echo '
 					<div id="Result">
-						
+						<div id="r'.$result[$j]['id'].'">
 						<p><a href="'.$result[$j]['url'].'" target="_blank">'.$result[$j]['title'].'</a></p>
 					 
 						 <p> '.$result[$j]['publisher'].'</p>
@@ -139,6 +146,8 @@
 						  <input name="id" id="id" type="hidden" value="'.$result[$j]['id'].'" / >
 						  <input type="submit" class="Edit" value="Edit" />
 						   </form>
+						     <input id="del" type="button" onclick="con('.$result[$j]['id'].')"  class="Delete" value="Delete" />
+					</div>
 					</div>
 					'	;
 	
@@ -169,6 +178,7 @@ echo 'number of pages is '.$pgno.'<br>';
 <!-- end left hand main content -->
 		
 		<div class="clear"></div>		
+	</div>
 	</div>
 		<!-- start footer -->
 		<div class="footer">
