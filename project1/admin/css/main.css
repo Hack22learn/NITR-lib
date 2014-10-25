@@ -338,7 +338,7 @@ div.footer p a {
 	text-decoration:underline;
 }
 
-Button,.searchbtn ,.Edit{
+Button,.searchbtn ,.Edit,.Delete{
 	-moz-box-shadow: 0px 1px 0px 0px #fff6af;
 	-webkit-box-shadow: 0px 1px 0px 0px #fff6af;
 	box-shadow: 0px 1px 0px 0px #fff6af;
@@ -364,7 +364,7 @@ Button,.searchbtn ,.Edit{
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
 }
-Button:hover , .searchbtn:hover ,.Edit:hover{
+Button:hover , .searchbtn:hover ,.Edit:hover,.Delete:hover{
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
 	background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
 	background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
@@ -374,7 +374,7 @@ Button:hover , .searchbtn:hover ,.Edit:hover{
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
 	background-color:#ffab23;
 }
-Button:active , .searchbtn:active ,.Edit:active{
+Button:active , .searchbtn:active ,.Edit:active,.Delete:active{
 	position:relative;
 	top:1px;
 
@@ -436,7 +436,13 @@ div#Result:nth-child(odd)
     margin-top: 10px;
     color: #5E5E5E;
 }
-.smart-green input[type="text"], .smart-green input[type="email"],.smart-green input[type="url"], .smart-green textarea, .smart-green select {
+.smart-green label>p
+{
+ float: right;
+ margin-top: 10px;
+    color: #5E5E5E;
+}
+.smart-green input[type="text"], .smart-green input[type="email"],.smart-green input[type="url"], .smart-green textarea, .smart-green select , .smart-green p{
     color: #555;
     height: 30px;
     line-height:15px;
