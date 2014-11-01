@@ -10,7 +10,9 @@ if(isset($_POST['pgno']))
  $q = $pdo->prepare($sql);
  $q->execute();
  $result=$q->fetchAll(PDO::FETCH_ASSOC);
+ echo '<table class="r">';
  foreach($result as $r)
- echo '<br /><a href="http://dx.doi.org/'.$r['doi'].'"> '.$r['sourcetitle'].'</a>    '.$r['year'].'    '.$r['department'].'    '.$r['authors'].'    <br />';
-}
+ echo '<tr><td><a href="http://dx.doi.org/'.$r['doi'].'"> '.$r['sourcetitle'].'</a>    '.$r['year'].'    '.$r['department'].'    '.$r['authors'].' </tr></td>';
+echo '</table>';
+ }
 ?>

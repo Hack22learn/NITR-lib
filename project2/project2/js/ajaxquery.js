@@ -1,3 +1,43 @@
+  function show(input)
+  {
+    if(input == 1)
+	{ 
+	  $(".hiddenba").hide();
+	  $(".shownba").show();
+	  $(".hiddenta").show();
+	}
+	else if(input == 2)
+	{
+		$(".hiddenba").show();
+	    $(".shownba").hide();
+	    $(".hiddenta").hide();
+	}
+	else if(input == 3)
+	{ 
+	  $(".hiddenby").hide();
+	  $(".shownby").show();
+	  $(".hiddenty").show();
+	}
+	else if(input == 4)
+	{
+		$(".hiddenby").show();
+	    $(".shownby").hide();
+	    $(".hiddenty").hide();
+	}
+	else if(input == 5)
+	{ 
+	  $(".hiddenbd").hide();
+	  $(".shownbd").show();
+	  $(".hiddentd").show();
+	}
+	else if(input == 6)
+	{
+		$(".hiddenbd").show();
+	    $(".shownbd").hide();
+	    $(".hiddentd").hide();
+	}
+  }
+  
  function submit_form(){
  var data = $("form").serialize(); 
 
@@ -18,7 +58,7 @@
                     type: "POST",
                     data: {"pgno":parseInt(pg)}, 
                     success: function(data){ 
-                        $("#query").html(data); 
+                        $(".query").html(data); 
                     }
                 });
   }
@@ -31,9 +71,15 @@
                     type: "POST",
                     data:{"pgno": pg}, 
                     success: function(data){ 
-                        $("#query").html(data); 
+                        $(".query").html(data); 
                     }
                 });
 		}
 		else $("#msg").slideDown(1000).delay(3000).slideUp(1000);
   }
+
+   
+
+$(document).ready(function() {
+submit_form();
+})

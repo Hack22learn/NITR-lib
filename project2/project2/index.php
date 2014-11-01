@@ -25,16 +25,16 @@ Page number out of bounds
 		</div>
 	</div>
 	
-	<div id="navigation">
+	<!-- <div id="navigation">
 		<div id="innernav">
 			<ul>
 				<!-- top navigation  -->
-				<!-- add class navleft to first item and navright to last item as shown -->
+				<!-- add class navleft to first item and navright to last item as shown 
 				<li class="navleft"><a href="index.php">home</a></li>
 				<li><a href="#">examples</a></li>
-			</ul>
-		</div>
-	</div>
+		</ul>
+		 </div>
+	</div> -->
 	
 	<!-- End of basic design -->
 <div id="content">
@@ -42,7 +42,7 @@ Page number out of bounds
 	
 <?php
 require 'dbconnect.php';
-$sql = 'select `name` ,`countids` from `authors` order by `countids` desc limit 0,4';
+$sql = 'select `name` ,`countids` from `authors` order by `countids` desc ';
 $q = $pdo->prepare($sql);
 $q->execute();
 $authors=$q->fetchAll(PDO::FETCH_ASSOC);
@@ -52,40 +52,90 @@ echo '<div id="sidebar">
 echo '
 		
 			<!-- sidebar h3: wrap text in <span></span> tags as shown -->
+			<input type="button" class="limit" value="limit" onclick="submit_form()">
 			<h3><span>Authors</span></h3>
-			<p class="newsitem">';
-foreach($authors as $a)
-echo $a['name'].'	('.$a['countids'].')<input type="checkbox" name="author[]" id="author" value="'.$a['name'].'"><br />';
-echo '</p>';
-
-$sql = 'select distinct `year` , count(*) from `journals` order by `year` desc limit 0,4';
+			<div  style="overflow-y:auto; max-height: 200px;">
+			<table>';
+if(count($authors)>5)
+{
+for($i=0;$i<5 ;$i++)
+echo '<tr><td>'.$authors[$i]['name'].'	('.$authors[$i]['countids'].')</td><td> <input type="checkbox" name="author[]" id="author" value="'.$authors[$i]['name'].'"></td></tr>';
+echo '</table>';
+echo '<table class="hiddenta" style="display:none; " >';
+for($i=5;$i<count($authors) ;$i++)
+echo '<tr><td>'.$authors[$i]['name'].'	('.$authors[$i]['countids'].')</td><td> <input type="checkbox" name="author[]" id="author" value="'.$authors[$i]['name'].'"></td></tr>';
+echo '</table>';
+echo '</div>';
+echo '<a  class="hiddenba" onclick="show(1);"  style="cursor:pointer;">View More</a>';
+echo '<a class="shownba" onclick="show(2);" style="cursor:pointer; display:none;" >Hide </a>';
+}
+else
+{
+for($i=0;$i<count($authors) ;$i++)
+echo '<tr><td>'.$authors[$i]['name'].'	('.$authors[$i]['countids'].')</td><td> <input type="checkbox" name="author[]" id="author" value="'.$authors[$i]['name'].'"></td></tr>';
+echo '</table>';
+echo '</div>';
+}
+$sql = 'Select distinct `year`, count(year) from `journals` group by year order by `year` desc';
 $q = $pdo->prepare($sql);
 $q->execute();
 $year=$q->fetchAll(PDO::FETCH_ASSOC);
 
 echo '<h3><span>Years</span></h3>
-			<p class="newsitem">';
-foreach($year as $y)
-echo $y['year'].'  ('.$y['count(*)'].')<input type="checkbox" name="year[]" id="year" value="'.$y['year'].'"> <br/>';
-echo '</p>';
+<div  style="overflow-y:auto; max-height: 200px;">
+			<table>';
+if(count($year)>5)
+{
+for($i=0;$i<5;$i++)
+echo '<tr><td>'.$year[$i]['year'].'  ('.$year[$i]['count(year)'].')</td><td> <input type="checkbox" name="year[]" id="year" value="'.$year[$i]['year'].'"> </td></tr>';
+echo '</table>';
+echo '<table class="hiddenty" style="display:none;" >';
+for($i=5;$i<count($year);$i++)
+echo '<tr><td>'.$year[$i]['year'].'  ('.$year[$i]['count(year)'].')</td><td> <input type="checkbox" name="year[]" id="year" value="'.$year[$i]['year'].'"> </td></tr>';
+echo '</table></div>';
+echo '<a  class="hiddenby" onclick="show(3);"  style="cursor:pointer;" >View More</a>';
+echo '<a class="shownby" onclick="show(4);" style="cursor:pointer; display:none;" >Hide </a>';
 
-
-$sql = 'select distinct `name`, `code` , `countids` from `dept` order by `countids` desc limit 0,4';
+}
+else
+{
+for($i=0;$i<count($year);$i++)
+echo '<tr><td>'.$year[$i]['year'].'  ('.$year[$i]['count(year)'].')</td><td> <input type="checkbox" name="year[]" id="year" value="'.$year[$i]['year'].'"> </td></tr>';
+echo '</table></div>';
+}
+$sql = 'select distinct `name`, `code` , `countids` from `dept` order by `countids` desc';
 $q = $pdo->prepare($sql);
 $q->execute();
 $dept=$q->fetchAll(PDO::FETCH_ASSOC);
 
 echo '<h3><span>Departments</span></h3>
-			<p class="newsitem">';
-foreach($dept as $d)
-echo $d['name'].'-('.$d['code'].')  ('.$d['countids'].')<input type="checkbox" name="dept[]" id="dept" value="'.$d['code'].'"></br />';
+			<div  style="overflow-y:auto; max-height: 200px;">
+			<table>';
+if(count($dept)>5)
+{
+for($i=0;$i<5;$i++)
+echo '<tr><td>'.$dept[$i]['name'].'-('.$dept[$i]['code'].')  ('.$dept[$i]['countids'].')</td><td> <input type="checkbox" name="dept[]" id="dept" value="'.$dept[$i]['code'].'"></td></tr>';
+echo '</table>';
+echo '<table class="hiddentd" style="display:none;" >';
+for($i=5;$i<count($dept);$i++)
+echo '<tr><td>'.$dept[$i]['name'].'-('.$dept[$i]['code'].')  ('.$dept[$i]['countids'].')</td><td> <input type="checkbox" name="dept[]" id="dept" value="'.$dept[$i]['code'].'"></td></tr>';
+echo '</table></div>';
 
-echo '</p><br /> 
-<input type="button" value="limit" onclick="submit_form()">
+echo '<a  class="hiddenbd" onclick="show(5);" style="cursor:pointer;" >View More</a>';
+echo '<a class="shownbd" onclick="show(6);" style="cursor:pointer; display:none;" >Hide </a>';
+}
+else
+{
+for($i=0;$i<count($dept);$i++)
+echo '<tr><td>'.$dept[$i]['name'].'-('.$dept[$i]['code'].')  ('.$dept[$i]['countids'].')</td><td> <input type="checkbox" name="dept[]" id="dept" value="'.$dept[$i]['code'].'"></td></tr>';
+echo '</table></div>';
+}
+echo '<br /> 
+<input type="button" class="limit" value="limit" onclick="submit_form()">
 </form>
 </div>
 <div id="page">
-   <div id="result">
+   <div id="result" style="padding:50px 50px 50px;">
    </div>
   </div>
   <div class="clear"></div>
@@ -93,7 +143,7 @@ echo '</p><br />
 </div>
 	<!-- start footer -->
 		<div class="footer">
-			<p class="left">&copy; 2014<a href="http://www.nitrkl.ac.in">NIT Rourkela</a></p>
+			<p class="left">&copy; 2014&nbsp;<a href="http://www.nitrkl.ac.in">NIT Rourkela</a></p>
 			<div class="clear"></div>					
 		</div>
 		<!-- end footer -->

@@ -54,7 +54,7 @@ else if(isset($_POST['year']))
 else if(!$_POST)
 	$q4 = 'select * from `journals` ';
 	
-	
+if($_POST)	
 $q4 = 'select * from `journals` where id in ('.implode(",",$id).')';
 $sql= $pdo->prepare($q4);
 $sql->execute();
@@ -70,11 +70,12 @@ $npgs= (int)($nre/10);
 if($nre%10!=0)
 $npgs++;
 echo '
-		<div id="query">';
+		<div class="query">
+		<table class="r">';
 		
 foreach($result as $r)
-echo '<br /><a href="http://dx.doi.org/'.$r['doi'].'"> '.$r['sourcetitle'].'</a>    '.$r['year'].'    '.$r['department'].'    '.$r['authors'].'    <br />';
-         echo '</div>		 
+echo '<tr><td><a href="http://dx.doi.org/'.$r['doi'].'" target="_blank"> '.$r['sourcetitle'].'</a> &nbsp;&nbsp;&nbsp;   '.$r['year'].'   &nbsp;&nbsp;&nbsp; '.$r['department'].'   &nbsp;&nbsp;&nbsp; '.$r['authors'].' &nbsp;&nbsp;&nbsp;  </td> </tr>';
+         echo '</table></div>		 
 		<div id="pgs">';
          
 		echo 'number of pages is '.$npgs.'<br>';
