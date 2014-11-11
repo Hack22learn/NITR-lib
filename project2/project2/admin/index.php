@@ -1,5 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html >
+<?php
+session_start();
+  if(!isset($_SESSION['pro2user']))
+  {
+   header("location:../login.php");
+   echo "error";
+  }
+?>
+<html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Project 2</title>
@@ -30,8 +38,10 @@ Page number out of bounds
 			<ul>
 				<!-- top navigation  -->
 				<!-- add class navleft to first item and navright to last item as shown -->
-				<li class="navleft"><a href="index.php">Home</a></li>
-				<li class="navright"><a href="login.php">Login</a></li>
+				<li class="navleft"><a href="index.php">home</a></li>
+				<li ><a href="upload.php">Upload</a></li>
+				<li ><a href="newdep.php">New Department</a></li>
+				<li class="navright"><a href="logout.php">Logout</a></li>
 		</ul>
 		 </div>
 	</div> 
@@ -48,7 +58,7 @@ $q->execute();
 $authors=$q->fetchAll(PDO::FETCH_ASSOC);
 
 echo '<div id="sidebar">
-<form action="#" method="post">';
+<form id="formlimit" name="formlimit" action="#" method="post">';
 echo '
 		
 			<!-- sidebar h3: wrap text in <span></span> tags as shown -->

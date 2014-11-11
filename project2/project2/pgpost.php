@@ -12,7 +12,7 @@ if(isset($_POST['pgno']))
  $result=$q->fetchAll(PDO::FETCH_ASSOC);
  echo '<table class="r">';
  foreach($result as $r)
- echo '<tr><td><a href="http://dx.doi.org/'.$r['doi'].'"> '.$r['sourcetitle'].'</a>    '.$r['year'].'    '.$r['department'].'    '.$r['authors'].' </tr></td>';
+ echo '<tr><td><i>'.$r['authors'].'</i>,<br /><a href="http://dx.doi.org/'.$r['doi'].'" target="_blank"> &ldquo;'.$r['title'].'&rdquo;</a>,&nbsp;'.$r['sourcetitle'].',&nbsp;'.$r['volume'].'('.$r['issue'].')&nbsp;'.$r['pagestart'].'-'.$r['pageend'].',&nbsp;'.$r['year'].',&nbsp;'.str_replace("|",", ",$r['department']).'</td></tr>';
 echo '</table>';
  }
 ?>

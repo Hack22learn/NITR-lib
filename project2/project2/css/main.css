@@ -40,15 +40,14 @@ table tr th {
 	padding:5px 10px;
 	color:#ffffff;
 	text-align:left;
-	/*font-weight:bold;
-	letter-spacing:2px;*/
+	font-weight:bold;
+	letter-spacing:2px;
 	border-top:1px solid #060D14;
 	border-bottom:1px solid #060D14;
 }
 table tr td {
 	padding:5px 10px;
 	color:#333333;
-	font-size:12px;
 	letter-spacing:1px;
 	border-bottom:1px solid #dddddd;
 }
@@ -208,17 +207,16 @@ div#navigation ul li a:hover {
 div#content {
 	background:#ffffff;
 	clear:both;
-	/*height:500px;*/
 	padding:25px 10px 10px 10px;
 }
 
 
 /* main content area + page styles */
 div#page {
-	float:right;
+	margin-left:20px;
+	margin-right:20px;
 	padding:10px 20px 10px;
-	width:60%;
-	
+	width:100%;
 	color:#555555;
 	font-size:1.0em;
 }
@@ -280,7 +278,6 @@ div#sidebar p.newsitem {
 }
 div#sidebar p.newsitem span {
 	font-size:0.75em;
-	text-transform:uppercase;
 	color:#ff6600;
 	font-weight:bold;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -340,7 +337,8 @@ div.footer p a {
 	border-bottom:none;
 	text-decoration:underline;
 }
-Button,.limit {
+
+Button,.searchbtn ,.Edit,.del{
 	-moz-box-shadow: 0px 1px 0px 0px #fff6af;
 	-webkit-box-shadow: 0px 1px 0px 0px #fff6af;
 	box-shadow: 0px 1px 0px 0px #fff6af;
@@ -366,7 +364,7 @@ Button,.limit {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
 }
-Button:hover , .limit:hover {
+Button:hover , .searchbtn:hover ,.Edit:hover,.del:hover{
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
 	background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
 	background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
@@ -376,12 +374,12 @@ Button:hover , .limit:hover {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
 	background-color:#ffab23;
 }
-Button:active , .limit:active {
+Button:active , .searchbtn:active ,.Edit:active,.del:active{
 	position:relative;
 	top:1px;
 
 }
-.pgbtn, .pgbtngo
+.titlebtn, .pgbtn, .pgbtngo, .spgbtn, .spgbtngo
 {
 color: #606060;
 border: solid 1px #b7b7b7;
@@ -390,15 +388,10 @@ background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eded
 font-size: 11px;
 padding: .2em 1em .275em;
 }
-.r td
-{
-font-size:16px;
-padding: 10px 10px 10px;
-}
-.r :nth-child(even)
+div#Result:nth-child(odd)
 {
  background-color: #F4F1E6;
- 
+
 }
 
 
